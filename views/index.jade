@@ -21,7 +21,7 @@ html(lang='en')
                             | Add New Room
                     if roomList
                         each room in roomList
-                            li.room(data-room="#{room.room}")
+                            li.room(data-room="#{room.room}-#{room.roomNumber}")
                                 a(href="#") Room Number #{room.roomNumber} - #{room.room}
             // /#sidebar-wrapper
             // Page Content

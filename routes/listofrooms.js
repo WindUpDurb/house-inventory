@@ -2,11 +2,12 @@
 
 var express = require("express");
 var router = express.Router();
-var RoomOperations = require("../models/listofrooms");
+var RoomListOperations = require("../models/listofrooms");
+var RoomOperations = require("../models/rooms");
 
 router.route("/")
     .get(function (request, response) {
-            RoomOperations.getListOfRooms(function(error, listOfRooms) {
+            RoomListOperations.getListOfRooms(function(error, listOfRooms) {
                if (error) {
                        return response.status(400).send(error);
                }
@@ -18,7 +19,7 @@ router.route("/")
             });
     })
     .post(function (request, response) {
-       RoomOperations.addNewRoom(request.body, function(error) {
+       RoomListOperations.addNewRoom(request.body, function(error) {
                if (error) {
                        return response.status(400).send(error);
                }
@@ -27,8 +28,8 @@ router.route("/")
     })
     .delete(function (request, response) {
         var toDelete = request.body.roomToDelete;
-        console.log("In route ", toDelete)
-        RoomOperations.deleteRoom(toDelete, function (error) {
+        var roomNumber = request.body.roomNumber;
+        RoomListOperations.deleteRoom(toDelete, roomNumber, function (error) {
            if (error) {
                return response.status(400).send(error);
            }
@@ -36,5 +37,10 @@ router.route("/")
         });
     });
 
+router.route("/:roomNumber")
+    .get(function (request, response) {
+
+        response.send();
+    });
 
 module.exports = router;

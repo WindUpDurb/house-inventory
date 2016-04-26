@@ -37,9 +37,10 @@ var roomListOperations = {
 
     deleteRoom : function () {
         $("#deleteRoomButton").click(function () {
-           var $roomToDelete = $("#roomToDeleteSpan").text();
+           var $roomToDelete = $("#roomToDeleteSpan").text().split("-");
            var toDeleteData = {
-               roomToDelete : $roomToDelete
+               roomToDelete : $roomToDelete[0],
+               roomNumber : $roomToDelete[1]
            };
            $.ajax({
                url : "/api/listofrooms",
