@@ -1,5 +1,10 @@
 extends ./index.jade
 
+block currentRoom
+    li.room(data-room="#{currentRoom.room}-#{currentRoom.roomNumber}")#currentRoomInList
+        a(href="#") Room Number #{currentRoom.roomNumber} - #{currentRoom.room}
+
+
 block contents
     h1 Contents of
         span#roomNumber Room #{roomNumberIn}

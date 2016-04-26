@@ -11,7 +11,7 @@ router.route("/")
                if (error) {
                        return response.status(400).send(error);
                }
-
+                console.log("Room List ", listOfRooms)
                 response.render("../views/index", {
                     roomList : listOfRooms
                 });
@@ -44,16 +44,41 @@ router.route("/:roomNumber")
             if (error) {
                 return response.status(400).send(error);
             }
-            console.log("room number ", roomNumber.substr(4))
-            response.render("../views/rooms", {
-                itemsInRoom : roomData,
-                roomNumberIn : roomNumber.substr(4)
-            });
-        });
+            RoomListOperations.getListOfRooms(function(error, listOfRooms) {
+                if (error) {
+                    return response.status(400).send(error);
+                }
+                //so the current room and can be double clicked and delete event can be triggered
+                var currentRoomInData = 0;
+                for (var i = 0; i < listOfRooms.length; i++) {
+                    if (roomNumber.substr(4) === listOfRooms[i].roomNumber.toString()) {
+                        currentRoomInData = i;
+                    }
+                }
+                var currentRoomData = listOfRooms[currentRoomInData];
+                listOfRooms.splice(currentRoomInData, 1);
+                    response.render("../views/rooms", {
+                        itemsInRoom : roomData,
+                        roomNumberIn : roomNumber.substr(4),
+                        roomList : listOfRooms,
+                        currentRoom : currentRoomData
+                        }
+                    );
+                });
+             });
     })
     .post(function (request, response) {
-        //to post method in model
-        response.render("../views/rooms");
+
+        var itemData = request.body;
+        var tableName =request.params.roomNumber;
+        console.log("parameters :", request.params);
+        console.log("itemData ", itemData);
+        RoomOperations.addItemToRoom(itemData, tableName, function (error, roomData) {
+            if (error) {
+                return response.status(400).send(error);
+            }
+            response.render("../views/rooms");
+        });
     });
 
 module.exports = router;

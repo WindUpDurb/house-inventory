@@ -4,6 +4,7 @@ var roomListOperations = {
 
     openAddRoomModal : function () {
         $("#clickToAddRoom").click(function () {
+            console.log("Woriking")
              $("#addRoomModal").modal("show");
         });
     },
@@ -53,7 +54,7 @@ var roomListOperations = {
         });
     },
     
-    openAddRoomModal : function () {
+    openAddItemModal : function () {
         $("#addItemModalButton").click(function () {
             $("#addItemModal").modal("show");
         });
@@ -92,6 +93,7 @@ var initialize = function () {
     roomListOperations.askRoomToDelete();
     roomListOperations.deleteRoom();
     roomListOperations.openAddRoomModal();
+    roomListOperations.openAddItemModal();
     roomListOperations.addItem();
 };
 

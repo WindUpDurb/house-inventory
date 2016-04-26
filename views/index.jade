@@ -14,15 +14,17 @@ html(lang='en')
             #sidebar-wrapper
                 ul.sidebar-nav
                     li.sidebar-brand
-                        a(href='#')
+                        a(href='/api/listofrooms')
                             | List of Rooms
                      li#clickToAddRoom
                         a(href="#")
                             | Add New Room
+                        block currentRoom
+                            li
                     if roomList
                         each room in roomList
                             li.room(data-room="#{room.room}-#{room.roomNumber}")
-                                a(href="#") Room Number #{room.roomNumber} - #{room.room}
+                                a(href=`/api/listofrooms/room${room.roomNumber}`) Room Number #{room.roomNumber} - #{room.room}
             // /#sidebar-wrapper
             // Page Content
             #page-content-wrapper

@@ -14,3 +14,6 @@ td {
     border: 1px black solid;
 }
 
+#currentRoomInList {
+    font-weight: bold;
+}
