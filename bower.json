@@ -1,0 +1,23 @@
+{
+  "name": "house_inventory",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "David Urbina <durbina1991@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "handlebars": "^4.0.5",
+    "jade": "^1.11.0"
+  }
+}
