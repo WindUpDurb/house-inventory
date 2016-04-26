@@ -22,9 +22,18 @@ router.route("/")
                if (error) {
                        return response.status(400).send(error);
                }
-
                response.send("Request Processed")
        })
+    })
+    .delete(function (request, response) {
+        var toDelete = request.body.roomToDelete;
+        console.log("In route ", toDelete)
+        RoomOperations.deleteRoom(toDelete, function (error) {
+           if (error) {
+               return response.status(400).send(error);
+           }
+            response.send("Delete Processed");
+        });
     });
 
 

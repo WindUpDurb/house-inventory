@@ -12,6 +12,13 @@ var operations = {
         database.query(`INSERT INTO listOfRooms VALUES ("${newRoom.roomNumber}", "${newRoom.room}")`, function (error) {
             callback(error);
         })
+    },
+
+    deleteRoom : function (roomToDelete, callback) {
+        console.log("The room to delete ", roomToDelete)
+        database.query(`DELETE FROM listOfRooms WHERE room = "${roomToDelete}";`, function (error) {
+            callback(error);
+        });
     }
 
 

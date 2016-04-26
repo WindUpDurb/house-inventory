@@ -1,12 +1,73 @@
 doctype html
 html(lang='en')
     head
+        script(src="/bower_components/jquery/dist/jquery.min.js")
+        script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+        link(rel="stylesheet" href="/simple-sidebar.css")
+        link(rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="/style.css")
+        script(src="/main.js")
         title House Inventory
     body
-        h1 List of Rooms
-        br
-        div#tableDiv
-            table
+        #wrapper
+            // Sidebar
+            #sidebar-wrapper
+                ul.sidebar-nav
+                    li.sidebar-brand
+                        a(href='#')
+                            | List of Rooms
+                     li#clickToAddRoom
+                        a(href="#")
+                            | Add New Room
+                    if roomList
+                        each room in roomList
+                            li.room(data-room="#{room.room}")
+                                a(href="#") Room Number #{room.roomNumber} - #{room.room}
+            // /#sidebar-wrapper
+            // Page Content
+            #page-content-wrapper
+                .container-fluid
+                    .row
+                        .col-lg-12
+                            h1 Contents of
+                            p
+                                | This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.
+                            p
+                                | Make sure to keep all page content within the
+                                code #page-content-wrapper
+            // /#page-content-wrapper --> Keep everything within
+        // /#wrapper
+        //add room modal
+        .modal.fade(tabindex='-1', role='dialog')#addRoomModal
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                        h4.modal-title Create Your New Room
+                    .modal-body
+                        .form-group
+                            input.form-control#newRoomName(type="text" placeholder="Enter a room name")
+                        .form-group
+                            input.form-control#newRoomNumber(type="test" placeholder="Enter a room number")
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='button')#addRoomButton Add Room
+                // /.modal-content
+            // /.modal-dialog
+        // /.modal
+        //Delete Room Modal
+        .modal.fade.bs-example-modal-sm#deleteRoomModal(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel')
+           .modal-dialog.modal-sm
+             .modal-content
+               h2 Confirm to Delete this Room
+               br
+               br
+               | Are you sure you would like to delete the following room:
+               br
+               h2span#roomToDeleteSpan
+               br
+               button#deleteRoomButton.btn.btn-danger Confirm Delete
+
 
 
