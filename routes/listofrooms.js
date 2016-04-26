@@ -39,8 +39,21 @@ router.route("/")
 
 router.route("/:roomNumber")
     .get(function (request, response) {
-
-        response.send();
+        var roomNumber = request.params.roomNumber;
+        RoomOperations.getRoomData(roomNumber, function(error, roomData) {
+            if (error) {
+                return response.status(400).send(error);
+            }
+            console.log("room number ", roomNumber.substr(4))
+            response.render("../views/rooms", {
+                itemsInRoom : roomData,
+                roomNumberIn : roomNumber.substr(4)
+            });
+        });
+    })
+    .post(function (request, response) {
+        //to post method in model
+        response.render("../views/rooms");
     });
 
 module.exports = router;

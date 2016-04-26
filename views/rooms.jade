@@ -1,0 +1,35 @@
+extends ./index.jade
+
+block contents
+    h1 Contents of
+        span#roomNumber Room #{roomNumberIn}
+    table
+        th Item Description
+        th Category
+        th Item Value
+        if itemsInRoom
+            each item in itemsInRoom
+                tr
+                    td #{item.description}
+                    td #{item.category}
+                    td #{item.itemValue}
+    button.btn#addItemModalButton Add Item
+    //add room modal
+    .modal.fade(tabindex='-1', role='dialog')#addItemModal
+        .modal-dialog
+            .modal-content
+                .modal-header
+                        h4.modal-title Add an Item to your New Room
+                    .modal-body
+                        .form-group
+                            input.form-control#newItemDescription(type="text" placeholder="Enter the item description")
+                        .form-group
+                            input.form-control#newItemCategory(type="test" placeholder="What can the item be categorized as?")
+                        .form-group
+                            input.form-control#newItemValue(type="test" placeholder="What is the item valued at?")
+                    .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='button')#addItemButton Add Item
+                    // /.modal-content
+                // /.modal-dialog
+            // /.modal

@@ -3,11 +3,14 @@
 var database = require("../config/db");
 
 var operations = {
-    /*
-    createRoomTable : function (roomData, error) {
+    
+    getRoomData : function (roomNumber, callback) {
+        database.query(`SELECT * FROM ${roomNumber}`, callback);
+    },
 
+    addItemToRoom : function (itemData, roomNumber, callback) {
 
-    }*/
+    }
     
 };
 
