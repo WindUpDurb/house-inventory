@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    background-color: #81C784;
 }
 
 table {
@@ -14,4 +15,12 @@ th {
 
 #currentRoomInList {
     font-weight: bold;
+}
+
+.col-lg-12 {
+    color: white;
+}
+
+#headingThree {
+    background-color: #E8F5E9;
 }

@@ -22,7 +22,7 @@ var roomListOperations = {
                method : 'POST',
                data : newRoomData,
                success : function () {
-                   console.log("New Room Created")
+                   $("#addRoomModal").modal("hide");
                }
             });
         });
@@ -48,7 +48,7 @@ var roomListOperations = {
                method : "DELETE",
                data : toDeleteData,
                success : function () {
-                   console.log("Room has been deleted")
+                   $("#deleteRoomModal").modal("hide");
                }
            })
         });
@@ -76,6 +76,7 @@ var roomListOperations = {
                method : "POST",
                data : itemData,
                success : function () {
+                   $("#addItemModal").modal("hide");
                    console.log("Response Received")
                }
            })
@@ -105,6 +106,7 @@ var roomListOperations = {
               method : "DELETE",
               data : toDeleteData,
               success : function () {
+                  $("#deleteItemModal").modal("hide");
                   console.log("Response Received ")
               }
            })

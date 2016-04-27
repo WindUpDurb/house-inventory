@@ -33,7 +33,15 @@ router.route("/")
            if (error) {
                return response.status(400).send(error);
            }
-            response.send("Delete Processed");
+            RoomListOperations.getListOfRooms(function(error, listOfRooms) {
+                if (error) {
+                    return response.status(400).send(error);
+                }
+                console.log("Room List ", listOfRooms)
+                response.send("../views/index", {
+                    roomList : listOfRooms
+                });
+            });
         });
     });
 

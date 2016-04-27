@@ -19,6 +19,8 @@
     "jquery": "^2.2.3",
     "handlebars": "^4.0.5",
     "jade": "^1.11.0",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "material-design-icons": "^2.2.3",
+    "Materialize": "materialize#^0.97.6"
   }
 }

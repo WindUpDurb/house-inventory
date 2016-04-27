@@ -1,10 +1,12 @@
 doctype html
 html(lang='en')
     head
+        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
         script(src="/bower_components/jquery/dist/jquery.min.js")
         script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
         link(rel="stylesheet" href="/simple-sidebar.css")
         link(rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/bower_components/Materialize/dist/css/materialize.min.css")
         link(rel="stylesheet" href="/style.css")
         script(src="/main.js")
         title House Inventory
@@ -34,12 +36,11 @@ html(lang='en')
                     .row
                         .col-lg-12
                             block contents
-                                h1 Contents of
+                                h1 House Inventory
                                 p
-                                    | This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.
+                                    | Click To Add A New Room in the SideMenu. Click on a room to view its contents. The current room will appear below "Add New Room" in bold font; double-click the current room to delete it. Add, edit, and delete items within each room.
                                 p
-                                    | Make sure to keep all page content within the
-                                code #page-content-wrapper
+                                    | As of right now, instant updating of the room list and items is not functional. Please reload to see the updates.
 
             // /#page-content-wrapper
         // /#wrapper
