@@ -1,17 +1,15 @@
 body {
     text-align: center;
-    background-color: #E1F5FE;
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
-    border: 1px black solid;
 }
 
 
-td {
-    border: 1px black solid;
+th {
+    text-align: center;
 }
 
 #currentRoomInList {

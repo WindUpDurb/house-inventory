@@ -81,6 +81,34 @@ var roomListOperations = {
            })
 
         });
+    },
+
+    openDeleteItemModal : function () {
+        $(".deleteItemButton").click(function () {
+            var toDelete = $(this).attr("data-name");
+            $("#itemToDeleteSpan").text(toDelete);
+            $("#deleteItemModal").modal("show");
+
+        });
+    },
+
+    deleteItem : function () {
+        $("#confirmDeleteItemButton").click(function () {
+           var $toDelete = $("#itemToDeleteSpan").text();
+           var roomNumber = $("#roomNumber").text().toLowerCase().split(" ").join("");
+           var toDeleteData = {
+             toDelete : $toDelete,
+             tableToUpdate : roomNumber
+           };
+           $.ajax({
+              url : `/api/listofrooms/${roomNumber}`,
+              method : "DELETE",
+              data : toDeleteData,
+              success : function () {
+                  console.log("Response Received ")
+              }
+           })
+        });
     }
 
 
@@ -95,6 +123,8 @@ var initialize = function () {
     roomListOperations.openAddRoomModal();
     roomListOperations.openAddItemModal();
     roomListOperations.addItem();
+    roomListOperations.openDeleteItemModal();
+    roomListOperations.deleteItem();
 };
 
 $(document).ready(initialize);

@@ -56,7 +56,8 @@ router.route("/:roomNumber")
                     }
                 }
                 var currentRoomData = listOfRooms[currentRoomInData];
-                listOfRooms.splice(currentRoomInData, 1);
+                //listOfRooms.splice(currentRoomInData, 1);
+                console.log(roomData)
                     response.render("../views/rooms", {
                         itemsInRoom : roomData,
                         roomNumberIn : roomNumber.substr(4),
@@ -78,6 +79,16 @@ router.route("/:roomNumber")
                 return response.status(400).send(error);
             }
             response.render("../views/rooms");
+        });
+    })
+    .delete(function (request, response) {
+        var toDelete = request.body.toDelete;
+        var tableToUpdate = request.body.tableToUpdate;
+        RoomOperations.deleteItemFromRoom(toDelete, tableToUpdate, function (error) {
+           if (error) {
+               return response.status(400).send(error);
+           }
+            response.send();
         });
     });
 

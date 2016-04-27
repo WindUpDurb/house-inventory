@@ -3,23 +3,44 @@ extends ./index.jade
 block currentRoom
     li.room(data-room="#{currentRoom.room}-#{currentRoom.roomNumber}")#currentRoomInList
         a(href="#") Room Number #{currentRoom.roomNumber} - #{currentRoom.room}
-
+    br
 
 block contents
     h1 Contents of
         span#roomNumber Room #{roomNumberIn}
-    table
-        th Item Description
-        th Category
-        th Item Value
+    #accordion.panel-group(role='tablist', aria-multiselectable='true')
         if itemsInRoom
-            each item in itemsInRoom
-                tr
-                    td #{item.description}
-                    td #{item.category}
-                    td #{item.itemValue}
+            each item, index in itemsInRoom
+                .panel.panel-default
+                    #headingThree.panel-heading(role='tab')
+                        h4.panel-title
+                            a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion', href='##{index}', aria-expanded='false', aria-controls='collapseThree')
+                                | #{item.description}
+                    .panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree', id="#{index}")
+                        .panel-body
+                            table.table.table-hover.table-striped
+                                tr
+                                    th Item Description
+                                    th Item Category
+                                    th Item Value
+                                tr
+                                    td.itemNameToGrab #{item.description}
+                                    td #{item.category}
+                                    td #{item.itemValue}
+                            br
+                            br
+                            hr
+                            input.form-control(type='text', placeholder='Change Item Description')
+                            input.form-control(type='text', placeholder='Change Item Category')
+                            input.form-control(type='text', placeholder='Change Item Value')
+                            button.btn.btn-primary(type="button") Submit Changes
+                            button.btn.btn-danger.deleteItemButton(data-name="#{item.description}" type="button") Delete Item
+
+
+
+
     button.btn#addItemModalButton Add Item
-    //add room modal
+    //add item modal
     .modal.fade(tabindex='-1', role='dialog')#addItemModal
         .modal-dialog
             .modal-content
@@ -38,3 +59,16 @@ block contents
                     // /.modal-content
                 // /.modal-dialog
             // /.modal
+     //delete item modal
+    .modal.fade.bs-example-modal-sm#deleteItemModal(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel')
+        .modal-dialog.modal-sm
+            .modal-content
+                h3 Confirm to Delete
+                br
+                br
+                | Are you sure you would like to delete the following item:
+                br
+                h2
+                    span#itemToDeleteSpan
+                br
+                button#confirmDeleteItemButton.btn.btn-danger Confirm Delete
